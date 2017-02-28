@@ -1,0 +1,13 @@
+{{textarea type="text" value=commentDescription placeholder="Type a comment" cols="15" rows="4"}}<br>
+<button {{action "addComment" commentDescription}}>Create Comment</button>
+
+  {{#each model as |data|}}
+	<ul>	
+  		{{! This case for add child only parent is not null}}
+	  	{{#if data.parent_id}}
+	  	{{else}}
+	  		{{! Call component ,pass params |data| action = createChildren}}
+	  	  	<li>{{comments-list comment=data action="createChildren"}}</li>
+	  	{{/if}}
+	</ul>
+  {{/each}}
